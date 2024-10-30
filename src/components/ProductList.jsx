@@ -1,6 +1,6 @@
 import React from 'react';
-import ProductCard from './ProductCard';
 import useFetchProducts from '../hooks/useFetchProducts';
+import ProductCard from './ProductCard';
 
 const ProductList = () => {
   const { products, loading, error } = useFetchProducts('https://dummyjson.com/products');

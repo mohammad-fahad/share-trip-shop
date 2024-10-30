@@ -1,6 +1,6 @@
 import React from 'react';
 import useCartStore from '../store/cartStore';
-import CartItem from '../components/CartItem';
+import CartItem from '../components/CartItem.tsx';
 
 const CartPage = () => {
     const { cart, removeFromCart } = useCartStore();
