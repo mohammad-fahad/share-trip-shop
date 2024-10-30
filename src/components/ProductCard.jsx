@@ -1,15 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useCartStore from '../store/cartStore';
 import CartButton from './CartButton.tsx';
 import QuickViewModal from './QuickViewModal';
+import discountTagImage from '../assets/Discount Type.png';
 
 const ProductCard = ({ product }) => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [hasDiscountTag, setHasDiscountTag] = useState(false);
   const { cart } = useCartStore();
   const isInCart = cart.some(item => item.id === product.id);
 
+  // Randomly display discount tag on mount
+  useEffect(() => {
+    setHasDiscountTag(Math.random() > 0.5);  // 50% chance of showing the tag
+  }, []);
+
   return (
-    <div className="relative bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+    <div className="relative bg-white rounded-lg shadow-md overflow-visible hover:shadow-lg transition-shadow"> {/* Changed overflow-hidden to overflow-visible */}
+      {hasDiscountTag && (
+        <img
+          src={discountTagImage}
+          alt="Discount Tag"
+          className="absolute top-4 -left-2 w-16 h-7 z-10" // Adjusted positioning to -left-5
+        />
+      )}
+
       <img
         src={product.thumbnail}
         alt={product.title}

@@ -14,12 +14,16 @@ const CartButton: React.FC<CartButtonProps> = ({ product }) => {
 
   return (
     <button
-      onClick={() => (isInCart ? removeFromCart(product.id) : addToCart(product))}
+      onClick={() =>
+        isInCart ? removeFromCart(product.id) : addToCart(product)
+      }
       className={`px-4 py-2 font-semibold rounded-lg transition-colors ${
-        isInCart ? 'bg-green-500 text-white hover:bg-green-600' : 'bg-blue-500 text-white hover:bg-blue-600'
+        isInCart
+          ? "bg-red-500 text-white hover:bg-red-600"
+          : "bg-green-500 text-white hover:bg-green-600"
       }`}
     >
-      {isInCart ? 'Added to Cart' : 'Add to Cart'}
+      {isInCart ? "Remove" : "Add to Cart"}
     </button>
   );
 };
